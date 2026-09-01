@@ -1,0 +1,47 @@
+Section,Display Name,Symbol,Symbol / Index Name,Kind,Method,Enabled
+Equity Indices,S&P 500,^GSPC,S&P 500 Index,market,Yahoo Finance,True
+Equity Indices,Dow Jones Industrial Average,^DJI,Dow Jones Industrial Average,market,Yahoo Finance,True
+Equity Indices,Nasdaq Composite,^IXIC,NASDAQ Composite Index,market,Yahoo Finance,True
+Equity Indices,Russell 2000,^RUT,Russell 2000 Index,market,Yahoo Finance,True
+Equity Indices,MSCI Developed Markets,EFA,iShares MSCI EAFE ETF,market,Yahoo Finance,True
+Equity Indices,MSCI Emerging Markets,EEM,iShares MSCI Emerging Markets ETF,market,Yahoo Finance,True
+Sector Performance,Energy,XLE,Energy Select Sector SPDR Fund,market,Yahoo Finance,True
+Sector Performance,Information Technology,XLK,Technology Select Sector SPDR Fund,market,Yahoo Finance,True
+Sector Performance,Consumer Staples,XLP,Consumer Staples Select Sector SPDR Fund,market,Yahoo Finance,True
+Sector Performance,Healthcare,XLV,Health Care Select Sector SPDR Fund,market,Yahoo Finance,True
+Sector Performance,Financials,XLF,Financial Select Sector SPDR Fund,market,Yahoo Finance,True
+Sector Performance,Consumer Discretionary,XLY,Consumer Discretionary Select Sector SPDR Fund,market,Yahoo Finance,True
+Sector Performance,Real Estate,XLRE,Real Estate Select Sector SPDR Fund,market,Yahoo Finance,True
+Sector Performance,Basic Materials,XLB,Materials Select Sector SPDR Fund,market,Yahoo Finance,True
+Sector Performance,Industrials,XLI,Industrial Select Sector SPDR Fund,market,Yahoo Finance,True
+Sector Performance,Utilities,XLU,Utilities Select Sector SPDR Fund,market,Yahoo Finance,True
+Sector Performance,Communications,XLC,Communication Services Select Sector SPDR Fund,market,Yahoo Finance,True
+Sector Performance,S&P 500,^GSPC,S&P 500 Index,market,Yahoo Finance,True
+Fixed Income,Short-Term Treasury (1-3 Year),SHY,iShares 1-3 Year Treasury Bond ETF,market,Yahoo Finance,True
+Fixed Income,Intermediate Treasury (7-10 Year),IEF,iShares 7-10 Year Treasury Bond ETF,market,Yahoo Finance,True
+Fixed Income,Long Treasury (20-30 Year),TLT,iShares 20+ Year Treasury Bond ETF,market,Yahoo Finance,True
+Fixed Income,Treasury Inflation-Protected Securities (TIPS),TIP,iShares TIPS Bond ETF,market,Yahoo Finance,True
+Fixed Income,U.S. Aggregate Bond,AGG,iShares Core U.S. Aggregate Bond ETF,market,Yahoo Finance,True
+Fixed Income,Investment Grade Corporate Bonds,LQD,iShares iBoxx $ Investment Grade Corporate Bond ETF,market,Yahoo Finance,True
+Fixed Income,Municipal Bond Benchmark,MUB,iShares National Muni Bond ETF,market,Yahoo Finance,True
+Fixed Income,High Yield Corporate Bonds,HYG,iShares iBoxx $ High Yield Corporate Bond ETF,market,Yahoo Finance,True
+Commodities,Gold,GC=F,Gold Futures,market,Yahoo Finance,True
+Commodities,Silver,SI=F,Silver Futures,market,Yahoo Finance,True
+Commodities,Crude Oil (WTI),CL=F,WTI Crude Oil Futures,market,Yahoo Finance,True
+Commodities,Natural Gas,NG=F,Natural Gas Futures,market,Yahoo Finance,True
+Commodities,Copper,HG=F,Copper Futures,market,Yahoo Finance,True
+Global Markets & Currency Trends,U.S. Dollar Index,DX-Y.NYB,U.S. Dollar Index,market,Yahoo Finance,True
+Global Markets & Currency Trends,Euro / U.S. Dollar,EURUSD=X,EUR/USD,market,Yahoo Finance,True
+Global Markets & Currency Trends,British Pound / U.S. Dollar,GBPUSD=X,GBP/USD,market,Yahoo Finance,True
+Global Markets & Currency Trends,U.S. Dollar / Japanese Yen,JPY=X,USD/JPY,market,Yahoo Finance,True
+Global Markets & Currency Trends,U.S. Dollar / Canadian Dollar,CAD=X,USD/CAD,market,Yahoo Finance,True
+Global Markets & Currency Trends,Swiss Franc / U.S. Dollar,CHF=X,USD/CHF,market,Yahoo Finance,True
+Global Markets & Currency Trends,Bitcoin / U.S. Dollar,BTC-USD,Bitcoin USD,market,Yahoo Finance,True
+Treasury Yield Curve,3M,^IRX,13 Week Treasury Bill,direct,Yahoo yield index,True
+Treasury Yield Curve,1Y,OBIL,F/m US Treasury 12 Month Bill ETF,proxy,ETF trailing distribution yield,True
+Treasury Yield Curve,2Y,UTWO,F/m US Treasury 2 Year Note ETF,proxy,ETF trailing distribution yield,True
+Treasury Yield Curve,5Y,^FVX,Treasury Yield 5 Years,direct,Yahoo yield index,True
+Treasury Yield Curve,7Y,USVN,F/m US Treasury 7 Year Note ETF,proxy,ETF trailing distribution yield,True
+Treasury Yield Curve,10Y,^TNX,CBOE Interest Rate 10 Year T Note,direct,Yahoo yield index,True
+Treasury Yield Curve,20+Y,TLT,iShares 20+ Year Treasury Bond ETF,proxy,ETF trailing distribution yield,True
+Treasury Yield Curve,30Y,^TYX,Treasury Yield 30 Years,direct,Yahoo yield index,True
