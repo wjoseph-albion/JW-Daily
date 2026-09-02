@@ -44,7 +44,7 @@ def sector_chart(rows,key,title):
         title=title,
         height=475,
         plot_bgcolor='rgba(0,0,0,0)',
-        paper_color='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
         margin=dict(l=180, r=85, t=55, b=40),
         xaxis=dict(
             range=[min(0, lo) - left_pad, max(0, hi) + right_pad],
