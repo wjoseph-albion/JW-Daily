@@ -43,13 +43,14 @@ def sector_chart(rows,key,title):
     fig.update_layout(
         title=title,
         height=475,
-        plot_bgcolor='white',
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_color='rgba(0,0,0,0)',
         margin=dict(l=180, r=85, t=55, b=40),
         xaxis=dict(
             range=[min(0, lo) - left_pad, max(0, hi) + right_pad],
             ticksuffix='%',
             zeroline=True,
-            zerolinecolor='#AAB4BC'
+            zerolinecolor='#D0D7DE'
         ),
         yaxis=dict(automargin=True),
         uniformtext_minsize=10,
@@ -98,7 +99,7 @@ st.divider();st.subheader('Treasury Yield Curve');curve=s.get('curve',{})
 if curve:
     maturities=list(curve);fig=go.Figure()
     for key,name,line_color,dash in [('Current','Current','#15324B','solid'),('1 Month Prior','1 Month Prior','#2D6A9F','dash'),('1 Year Prior','1 Year Prior','#8997A1','dot')]:fig.add_trace(go.Scatter(x=maturities,y=[curve[x][key] for x in maturities],mode='lines+markers',name=name,line=dict(color=line_color,width=3,dash=dash)))
-    vals=[curve[x][k] for x in maturities for k in ['Current','1 Month Prior','1 Year Prior'] if curve[x].get(k) is not None];fig.update_layout(height=480,plot_bgcolor='white',yaxis_title='Yield (%)',yaxis_range=[0,max(6,max(vals)*1.15)],legend=dict(orientation='h',y=1.12));st.plotly_chart(fig,use_container_width=True)
+    vals=[curve[x][k] for x in maturities for k in ['Current','1 Month Prior','1 Year Prior'] if curve[x].get(k) is not None];fig.update_layout(height=480,plot_bgcolor='rgba(0,0,0,0)',paper_bgcolor='rgba(0,0,0,0)',yaxis_title='Yield (%)',yaxis_range=[0,max(6,max(vals)*1.15)],legend=dict(orientation='h',y=1.12));st.plotly_chart(fig,use_container_width=True)
     t=pd.DataFrame([{'Maturity':x,'Current':curve[x]['Current'],'1 Month Prior':curve[x]['1 Month Prior'],'1 Year Prior':curve[x]['1 Year Prior']} for x in maturities]);st.dataframe(t.style.format({'Current':'{:.2f}%','1 Month Prior':'{:.2f}%','1 Year Prior':'{:.2f}%'}),use_container_width=True,hide_index=True)
 else:st.info('Treasury yield data is unavailable.')
 for title,key in [('Commodities','commodities'),('Global Markets & Currency Trends','global_markets')]:st.divider();st.subheader(title);st.dataframe(perf(s.get(key,[])),use_container_width=True,hide_index=True)
