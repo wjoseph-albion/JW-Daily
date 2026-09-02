@@ -75,7 +75,7 @@ if mode=='Editor & Settings':
     if st.button('Refresh Market, Rates, and Curve',type='primary',disabled=(OUT/'refresh.lock').exists()):subprocess.Popen([sys.executable,'scripts/update.py'],cwd=ROOT,creationflags=getattr(subprocess,'CREATE_NEW_CONSOLE',0));st.success('Refresh started');st.rerun()
     st.stop()
 left,right=st.columns([4,1])
-with left:st.markdown('<div class=t>Jason Ware Daily</div>',unsafe_allow_html=True);st.caption('Daily Market Recap')
+with left:st.caption('Daily Market Recap')
 with right:st.markdown(f'<div class=meta><b>Updated:</b> {html.escape(stamp(s.get("generated_at")))}</div>',unsafe_allow_html=True)
 st.markdown('<div class=q>&ldquo;'+html.escape(e.get('quote',''))+'&rdquo;<small>'+html.escape(e.get('attribution',''))+'</small></div>',unsafe_allow_html=True);st.subheader('Jason Ware Daily');st.markdown('<div class=c>'+html.escape(e.get('commentary','')).replace('\n','<br>')+'</div>',unsafe_allow_html=True)
 if not s:st.warning('No snapshot yet. Use Editor & Settings to refresh.');st.stop()
