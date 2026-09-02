@@ -1,1 +1,9 @@
-.block-container{max-width:1450px;padding-top:4.0rem}.t{font-size:2.5rem;font-weight:800;color:#15324B}.meta{text-align:right;color:#667782;font-size:.78rem}.q{background:#F3F6F8;border-left:5px solid #2D6A9F;padding:1.3rem;font:italic 1.25rem Georgia;color:#15324B}.q small{display:block;font:normal .8rem Arial;color:#667782}.c{border:1px solid #D9E2E8;padding:1.35rem;border-radius:8px}h1,h2,h3{color:#15324B!important}[data-testid=stSidebar]{background:#F3F6F8}
+.block-container{max-width:1450px;padding-top:4.0rem}
+.t{font-size:2.5rem;font-weight:800;color:#15324B}
+.meta{text-align:right;color:#667782;font-size:.78rem}
+.q{background:inherit;border-left:5px solid #2D6A9F;padding:1.3rem;font:italic 1.25rem Georgia;color:#15324B}
+.q small{display:block;font:normal .8rem Arial;color:#667782}
+.c{border:1px solid #D9E2E8;padding:1.35rem;border-radius:8px}
+h1,h2,h3{color:#15324B!important}
+[data-testid=stSidebar]
+{background:#F3F6F8}
