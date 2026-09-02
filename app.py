@@ -98,7 +98,7 @@ st.divider();st.subheader('Fixed Income Benchmarks');st.dataframe(perf(s.get('fi
 st.divider();st.subheader('Treasury Yield Curve');curve=s.get('curve',{})
 if curve:
     maturities=list(curve);fig=go.Figure()
-    for key,name,line_color,dash in [('Current','Current','#15324B','solid'),('1 Month Prior','1 Month Prior','#2D6A9F','dash'),('1 Year Prior','1 Year Prior','#8997A1','dot')]:fig.add_trace(go.Scatter(x=maturities,y=[curve[x][key] for x in maturities],mode='lines+markers',name=name,line=dict(color=line_color,width=3,dash=dash)))
+    for key,name,line_color,dash in [('Current','Current','#4DA3FF','solid'),('1 Month Prior','1 Month Prior','#8CB8E8','dash'),('1 Year Prior','1 Year Prior','#777777','dot')]:fig.add_trace(go.Scatter(x=maturities,y=[curve[x][key] for x in maturities],mode='lines+markers',name=name,line=dict(color=line_color,width=3,dash=dash)))
     vals=[curve[x][k] for x in maturities for k in ['Current','1 Month Prior','1 Year Prior'] if curve[x].get(k) is not None];fig.update_layout(height=480,plot_bgcolor='rgba(0,0,0,0)',paper_bgcolor='rgba(0,0,0,0)',yaxis_title='Yield (%)',yaxis_range=[0,max(6,max(vals)*1.15)],legend=dict(orientation='h',y=1.12));st.plotly_chart(fig,use_container_width=True)
     t=pd.DataFrame([{'Maturity':x,'Current':curve[x]['Current'],'1 Month Prior':curve[x]['1 Month Prior'],'1 Year Prior':curve[x]['1 Year Prior']} for x in maturities]);st.dataframe(t.style.format({'Current':'{:.2f}%','1 Month Prior':'{:.2f}%','1 Year Prior':'{:.2f}%'}),use_container_width=True,hide_index=True)
 else:st.info('Treasury yield data is unavailable.')
