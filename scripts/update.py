@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import pandas as pd
 import yfinance as yf
 warnings.filterwarnings('ignore', category=DeprecationWarning)
+WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=bb46E8&download=1"
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data' / 'snapshots'
 OUT.mkdir(parents=True, exist_ok=True)
@@ -40,7 +41,16 @@ def main():
     if LOCK.exists(): raise SystemExit('Refresh already running.')
     LOCK.write_text(datetime.now(timezone.utc).isoformat(), encoding='utf-8'); start=time.time()
     try:
-        mp = pd.read_csv(ROOT/'data/source_mappings.csv')
+        import requests
+from io import BytesIO
+
+r = requests.get(WORKBOOK_URL)
+
+mp = pd.read_excel(
+    BytesIO(r.content),
+    sheet_name="Source Mappings",
+    engine="openpyxl"
+)
         mp = mp[mp['Enabled'].astype(str).str.lower().isin(['true','1','yes'])]
         ticks = sorted(set(mp['Symbol'].dropna().tolist()+['^VIX']))
         block = yf.download(ticks, period='max', auto_adjust=False, actions=True, progress=False, threads=True, timeout=45)
