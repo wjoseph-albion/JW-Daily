@@ -55,8 +55,11 @@ def main():
             sheet_name="Source Mappings",
             engine="openpyxl"
     )
-    mp = mp[mp['Enabled'].astype(str).str.lower().isin(['true','1','yes'])]
-        mp = mp[mp['Enabled'].astype(str).str.lower().isin(['true','1','yes'])]
+        mp = mp[
+            mp['Enabled']
+            .astype(str)
+            .str.lower()
+            .isin(['true','1','yes'])]
         ticks = sorted(set(mp['Symbol'].dropna().tolist()+['^VIX']))
         block = yf.download(ticks, period='max', auto_adjust=False, actions=True, progress=False, threads=True, timeout=45)
         snap={'errors':[]}
