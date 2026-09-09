@@ -93,7 +93,30 @@ def sector_chart(rows,key,title):
         uniformtext_mode='show'
     )
     return fig
-s=read_json(OUT/'current.json',{});e=read_json(EDIT,{});mode=st.sidebar.radio('View',['Publication','Editor & Settings'])
+s=read_json(OUT/'current.json',{});
+wb = load_workbook()
+
+editorial = wb["editorial"]
+
+e = {
+    "quote": editorial.loc[
+        editorial["Field"]=="Quote",
+        "Value"
+    ].iloc[0],
+
+    "attribution": editorial.loc[
+        editorial["Field"]=="Attribution",
+        "Value"
+    ].iloc[0],
+
+    "commentary": editorial.loc[
+        editorial["Field"]=="Commentary",
+        "Value"
+    ].iloc[0]
+};
+
+
+mode=st.sidebar.radio('View',['Publication','Editor & Settings'])
 if mode=='Editor & Settings':
     st.title('Editor & Settings');st.write(f'**Current Snapshot:** {s.get("snapshot_id","Not available")}');st.write(f'**Last Refresh:** {stamp(s.get("generated_at"))}');st.write(f'**Duration:** {s.get("duration","Not recorded")} seconds');st.write(f'**Status:** {s.get("status","Not available")}')
     if s.get('errors'):
