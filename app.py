@@ -95,6 +95,19 @@ def sector_chart(rows,key,title):
     )
     return fig
 s=read_json(OUT/'current.json',{});
+from datetime import datetime
+
+snapshot_date = (
+    pd.to_datetime(s.get("generated_at")).date()
+    if s.get("generated_at")
+    else None
+)
+
+today = datetime.utcnow().date()
+
+if snapshot_date != today:
+    refresh_market_data()
+    s = read_json(OUT/'current.json', {})
 wb = load_workbook()
 
 editorial = wb["editorial"]
