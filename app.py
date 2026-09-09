@@ -165,6 +165,7 @@ for title,key in [('Commodities','commodities'),('Global Markets & Currency Tren
 
 st.divider()
 st.subheader('Economic Indicators')
+economic = wb["economic"]
 st.dataframe(
     economic,
     use_container_width=True,
