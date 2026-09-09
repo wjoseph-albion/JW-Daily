@@ -59,21 +59,14 @@ def sector_chart(rows,key,title):
     return fig
 s=read_json(OUT/'current.json',{});e=read_json(EDIT,{});mode=st.sidebar.radio('View',['Publication','Editor & Settings'])
 import requests
-from io import BytesIO
 
-WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=twUkFw"
+WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=bb46E8"
 
-try:
-    response = requests.get(WORKBOOK_URL)
+r = requests.get(WORKBOOK_URL)
 
-    st.write("Status:", response.status_code)
-
-    xls = pd.ExcelFile(BytesIO(response.content))
-
-    st.success(f"Workbook accessed successfully: {xls.sheet_names}")
-
-except Exception as exc:
-    st.error(f"Workbook test failed: {exc}")
+st.write("Status:", r.status_code)
+st.write("Content Type:", r.headers.get("Content-Type"))
+st.write(r.text[:500])
 if mode=='Editor & Settings':
     st.title('Editor & Settings');st.write(f'**Current Snapshot:** {s.get("snapshot_id","Not available")}');st.write(f'**Last Refresh:** {stamp(s.get("generated_at"))}');st.write(f'**Duration:** {s.get("duration","Not recorded")} seconds');st.write(f'**Status:** {s.get("status","Not available")}')
     if s.get('errors'):
