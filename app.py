@@ -162,7 +162,6 @@ if curve:
     t=pd.DataFrame([{'Maturity':x,'Current':curve[x]['Current'],'1 Month Prior':curve[x]['1 Month Prior'],'1 Year Prior':curve[x]['1 Year Prior']} for x in maturities]);st.dataframe(t.style.format({'Current':'{:.2f}%','1 Month Prior':'{:.2f}%','1 Year Prior':'{:.2f}%'}),use_container_width=True,hide_index=True)
 else:st.info('Treasury yield data is unavailable.')
 for title,key in [('Commodities','commodities'),('Global Markets & Currency Trends','global_markets')]:st.divider();st.subheader(title);st.dataframe(perf(s.get(key,[])),use_container_width=True,hide_index=True)
-economic = wb["economic"]
 
 st.divider()
 st.subheader('Economic Indicators')
