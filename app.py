@@ -3,6 +3,42 @@ import json, html, subprocess, sys
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+
+
+import requests
+from io import BytesIO
+
+WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=bb46E8&download=1"
+
+@st.cache_data(ttl=300)
+def load_workbook():
+    r = requests.get(WORKBOOK_URL)
+    r.raise_for_status()
+
+    return {
+        "editorial": pd.read_excel(
+            BytesIO(r.content),
+            sheet_name="Editorial",
+            engine="openpyxl"
+        ),
+        "economic": pd.read_excel(
+            BytesIO(r.content),
+            sheet_name="Economic Indicators",
+            engine="openpyxl"
+        ),
+        "money_market": pd.read_excel(
+            BytesIO(r.content),
+            sheet_name="Money Market Fund Yields",
+            engine="openpyxl"
+        ),
+        "mappings": pd.read_excel(
+            BytesIO(r.content),
+            sheet_name="Source Mappings",
+            engine="openpyxl"
+        )
+    }
+
+
 ROOT=Path(__file__).parent;OUT=ROOT/'data/snapshots';EDIT=ROOT/'data/editorial.json';MAP=ROOT/'data/source_mappings.csv';ECON=ROOT/'data/economic_indicators.csv';MM=ROOT/'data/money_market_yields.csv'
 st.set_page_config(page_title='Jason Ware Daily',page_icon='📈',layout='wide');st.markdown('<style>'+Path('assets/style.css').read_text()+'</style>',unsafe_allow_html=True)
 def read_json(p,d):
@@ -58,28 +94,6 @@ def sector_chart(rows,key,title):
     )
     return fig
 s=read_json(OUT/'current.json',{});e=read_json(EDIT,{});mode=st.sidebar.radio('View',['Publication','Editor & Settings'])
-
-WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=pAi4Ll&download=1"
-import requests
-from io import BytesIO
-
-try:
-    r = requests.get(WORKBOOK_URL)
-
-    st.write("Status:", r.status_code)
-    st.write("Content Type:", r.headers.get("Content-Type"))
-
-    workbook = pd.ExcelFile(
-        BytesIO(r.content),
-        engine="openpyxl"
-    )
-
-    st.success(workbook.sheet_names)
-
-except Exception as exc:
-    st.error(f"Workbook test failed: {exc}")
-
-
 if mode=='Editor & Settings':
     st.title('Editor & Settings');st.write(f'**Current Snapshot:** {s.get("snapshot_id","Not available")}');st.write(f'**Last Refresh:** {stamp(s.get("generated_at"))}');st.write(f'**Duration:** {s.get("duration","Not recorded")} seconds');st.write(f'**Status:** {s.get("status","Not available")}')
     if s.get('errors'):
