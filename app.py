@@ -182,6 +182,6 @@ st.dataframe(
 )
 st.divider()
 
-if st.button("🔄 Refresh Workbook"):
+if st.button("🔄 Refresh Economic Indicators and MMKT Yields"):
     st.cache_data.clear()
     st.rerun()
