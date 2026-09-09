@@ -61,7 +61,7 @@ s=read_json(OUT/'current.json',{});e=read_json(EDIT,{});mode=st.sidebar.radio('V
 import requests
 from io import BytesIO
 
-WORKBOOK_URL = "YOUR_SHAREPOINT_LINK"
+WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=twUkFw"
 
 try:
     response = requests.get(WORKBOOK_URL)
