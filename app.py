@@ -60,7 +60,7 @@ def sector_chart(rows,key,title):
 s=read_json(OUT/'current.json',{});e=read_json(EDIT,{});mode=st.sidebar.radio('View',['Publication','Editor & Settings'])
 WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=pAi4Ll"
 try:
-    xls = pd.ExcelFile(https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=pAi4Ll)
+    xls = pd.ExcelFile(WORKBOOK_URL)
     st.success(f"Workbook accessed successfully: {xls.sheet_names}")
 except Exception as exc:
     st.errorr(f"Workbook test failed: {exc}")
