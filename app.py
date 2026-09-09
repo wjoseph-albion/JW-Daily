@@ -58,10 +58,20 @@ def sector_chart(rows,key,title):
     )
     return fig
 s=read_json(OUT/'current.json',{});e=read_json(EDIT,{});mode=st.sidebar.radio('View',['Publication','Editor & Settings'])
-WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=pAi4Ll"
+import requests
+from io import BytesIO
+
+WORKBOOK_URL = "YOUR_SHAREPOINT_LINK"
+
 try:
-    xls = pd.ExcelFile(WORKBOOK_URL)
+    response = requests.get(WORKBOOK_URL)
+
+    st.write("Status:", response.status_code)
+
+    xls = pd.ExcelFile(BytesIO(response.content))
+
     st.success(f"Workbook accessed successfully: {xls.sheet_names}")
+
 except Exception as exc:
     st.error(f"Workbook test failed: {exc}")
 if mode=='Editor & Settings':
