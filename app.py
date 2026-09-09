@@ -170,4 +170,13 @@ st.dataframe(
     economic,
     use_container_width=True,
     hide_index=True)
-st.divider();st.subheader('Money Market Fund Yields');st.dataframe(pd.read_csv(MM,dtype=str,keep_default_na=False).reindex(columns=['Fund','Ticker','Yield','As Of']),use_container_width=True,hide_index=True)
+money_market = wb["money_market"]
+
+st.divider()
+st.subheader('Money Market Fund Yields')
+
+st.dataframe(
+    money_market,
+    use_container_width=True,
+    hide_index=True
+)
