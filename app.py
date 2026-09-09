@@ -162,5 +162,13 @@ if curve:
     t=pd.DataFrame([{'Maturity':x,'Current':curve[x]['Current'],'1 Month Prior':curve[x]['1 Month Prior'],'1 Year Prior':curve[x]['1 Year Prior']} for x in maturities]);st.dataframe(t.style.format({'Current':'{:.2f}%','1 Month Prior':'{:.2f}%','1 Year Prior':'{:.2f}%'}),use_container_width=True,hide_index=True)
 else:st.info('Treasury yield data is unavailable.')
 for title,key in [('Commodities','commodities'),('Global Markets & Currency Trends','global_markets')]:st.divider();st.subheader(title);st.dataframe(perf(s.get(key,[])),use_container_width=True,hide_index=True)
-st.divider();st.subheader('Economic Indicators');st.dataframe(pd.read_csv(ECON,dtype=str,keep_default_na=False),use_container_width=True,hide_index=True)
+economic = wb["economic"]
+
+st.divider()
+st.subheader('Economic Indicators')
+st.dataframe(
+    economic,
+    use_container_width=True,
+    hide_index=True
+)
 st.divider();st.subheader('Money Market Fund Yields');st.dataframe(pd.read_csv(MM,dtype=str,keep_default_na=False).reindex(columns=['Fund','Ticker','Yield','As Of']),use_container_width=True,hide_index=True)
