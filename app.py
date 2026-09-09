@@ -196,7 +196,7 @@ st.dataframe(
 )
 st.divider()
 
-if st.button("🔄 Refresh Manual Entries"):
+if st.button("🔄 Refresh Commentary and Manual Entries"):
     st.cache_data.clear()
     st.rerun()
 
