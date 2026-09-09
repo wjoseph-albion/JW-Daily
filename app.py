@@ -4,10 +4,10 @@ import json, html, subprocess, sys
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
-
-
 import requests
 from io import BytesIO
+ROOT = Path(__file__).parent
+OUT = ROOT / 'data' / 'snapshots'
 
 WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=bb46E8&download=1"
 
