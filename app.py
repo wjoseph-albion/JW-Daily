@@ -133,6 +133,7 @@ with left:st.caption('Daily Market Recap')
 with right:st.markdown(f'<div class=meta><b>Updated:</b> {html.escape(stamp(s.get("generated_at")))}</div>',unsafe_allow_html=True)
 st.markdown('<div class=q>&ldquo;'+html.escape(e.get('quote',''))+'&rdquo;<small>'+html.escape(e.get('attribution',''))+'</small></div>',unsafe_allow_html=True);st.subheader('Jason Ware Daily');st.markdown('<div class=c>'+html.escape(e.get('commentary','')).replace('\n','<br>')+'</div>',unsafe_allow_html=True)
 if not s:st.warning('No snapshot yet. Use Editor & Settings to refresh.');st.stop()
+st.divider()
 st.subheader('Risk-On / Risk-Off Dashboard');cols=st.columns([1.1,1.15,1.1,1.05,1.35,0.95])
 for col,z in zip(cols,s.get('risk',[])):
     with col:
