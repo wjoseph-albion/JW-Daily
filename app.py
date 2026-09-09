@@ -170,13 +170,4 @@ st.dataframe(
     economic,
     use_container_width=True,
     hide_index=True
-)
-economic = wb["economic"]
-
-for col in ["Current", "Previous", "Cons Est"]:
-    economic[col] = economic[col].apply(
-        lambda x: f"{x:.2%}"
-        if pd.notna(x) and isinstance(x, (int, float))
-        else x
-    )
 st.divider();st.subheader('Money Market Fund Yields');st.dataframe(pd.read_csv(MM,dtype=str,keep_default_na=False).reindex(columns=['Fund','Ticker','Yield','As Of']),use_container_width=True,hide_index=True)
