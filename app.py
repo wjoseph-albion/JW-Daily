@@ -180,3 +180,8 @@ st.dataframe(
     use_container_width=True,
     hide_index=True
 )
+st.divider()
+
+if st.button("🔄 Refresh Workbook"):
+    st.cache_data.clear()
+    st.rerun()
