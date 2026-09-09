@@ -38,18 +38,22 @@ def trailing_yield(ticker, anchor=None):
     a = pd.Timestamp(anchor) if anchor is not None else pd.Timestamp(h.index[-1]); x = h[h.index <= a]
     return float(x.loc[x.index > a-pd.DateOffset(years=1),'Dividends'].sum()/x['Close'].iloc[-1]) if len(x) else None
 def main():
-    if LOCK.exists(): raise SystemExit('Refresh already running.')
-    LOCK.write_text(datetime.now(timezone.utc).isoformat(), encoding='utf-8'); start=time.time()
-try:
-    import requests
-    from io import BytesIO
+    if LOCK.exists(): 
+        raise SystemExit('Refresh already running.')
+    LOCK.write_text(
+        datetime.now(timezone.utc).isoformat(), 
+        encoding='utf-8'); 
+    start=time.time()
+    try:
+        import requests
+        from io import BytesIO
 
-    r = requests.get(WORKBOOK_URL)
+        r = requests.get(WORKBOOK_URL)
 
-    mp = pd.read_excel(
-        BytesIO(r.content),
-        sheet_name="Source Mappings",
-        engine="openpyxl"
+        mp = pd.read_excel(
+            BytesIO(r.content),
+            sheet_name="Source Mappings",
+            engine="openpyxl"
     )
     mp = mp[mp['Enabled'].astype(str).str.lower().isin(['true','1','yes'])]
         mp = mp[mp['Enabled'].astype(str).str.lower().isin(['true','1','yes'])]
