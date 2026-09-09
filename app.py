@@ -1,3 +1,4 @@
+from scripts.update import main as refresh_market_data
 from pathlib import Path
 import json, html, subprocess, sys
 import pandas as pd
@@ -192,4 +193,6 @@ if st.button("🔄 Refresh Workbook"):
     st.rerun()
 
 if st.button("📈 Refresh Market Data"):
-    st.success("Market data refresh not yet connected.")
+    refresh_market_data()
+    st.success("Market data refreshed.")
+    st.rerun()
