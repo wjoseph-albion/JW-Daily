@@ -190,7 +190,12 @@ if st.button("🔄 Refresh Manual Entries"):
 if st.button("📈 Refresh Market Data"):
     refresh_market_data()
 
+    s = read_json(OUT/'current.json', {})
+
     st.cache_data.clear()
+
+    st.success(
+        f"Market data refreshed. Snapshot: {s.get('snapshot_id')}"
+    )
+
     st.rerun()
-s = read_json(OUT/'current.json', {})
-st.write(s.get("generated_at"))
