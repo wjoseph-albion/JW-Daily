@@ -186,27 +186,10 @@ if st.button("🔄 Refresh Economic Indicators and MMKT Yields"):
     st.cache_data.clear()
     st.rerun()
 st.divider()
-2
- 
-3
+
 if st.button("🔄 Refresh Workbook"):
-4
-st.cache_data.clear()
-5
-st.rerun()
-6
- 
-7
+    st.cache_data.clear()
+    st.rerun()
+
 if st.button("📈 Refresh Market Data"):
-8
-subprocess.Popen(
-9
-[sys.executable, 'scripts/update.py'],
-10
-cwd=ROOT,
-11
-creationflags=getattr(subprocess,'CREATE_NEW_CONSOLE',0)
-12
-)
-13
-st.success("Market refresh started.")
+    st.success("Market data refresh not yet connected.")
