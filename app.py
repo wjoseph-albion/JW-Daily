@@ -183,16 +183,16 @@ st.dataframe(
 )
 st.divider()
 
-if st.button("🔄 Refresh Economic Indicators and MMKT Yields"):
-    st.cache_data.clear()
-    st.rerun()
-st.divider()
-
-if st.button("🔄 Refresh Workbook"):
+if st.button("🔄 Refresh Manual Entries"):
     st.cache_data.clear()
     st.rerun()
 
 if st.button("📈 Refresh Market Data"):
     refresh_market_data()
-    st.success("Market data refreshed.")
+
+    s = read_json(OUT/'current.json', {})
+
+    st.write("Generated:", s.get("generated_at"))
+    st.write("Snapshot ID:", s.get("snapshot_id"))
+
     st.rerun()
