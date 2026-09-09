@@ -173,7 +173,7 @@ st.dataframe(
 )
 economic = wb["economic"]
 
-for col in ["Value", "Previous", "Cons Est"]:
+for col in ["Current", "Previous", "Cons Est"]:
     economic[col] = economic[col].apply(
         lambda x: f"{x:.2%}"
         if pd.notna(x) and isinstance(x, (int, float))
