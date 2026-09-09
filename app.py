@@ -58,6 +58,12 @@ def sector_chart(rows,key,title):
     )
     return fig
 s=read_json(OUT/'current.json',{});e=read_json(EDIT,{});mode=st.sidebar.radio('View',['Publication','Editor & Settings'])
+    WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=pAi4Ll"
+try:
+    xls = pd.ExcelFile(https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=pAi4Ll)
+    st.success(f"Workbook accessed successfully: {xls.sheet_names}")
+except Exception as exc:
+    st.errorr(f"Workbook test failed: {exc}")
 if mode=='Editor & Settings':
     st.title('Editor & Settings');st.write(f'**Current Snapshot:** {s.get("snapshot_id","Not available")}');st.write(f'**Last Refresh:** {stamp(s.get("generated_at"))}');st.write(f'**Duration:** {s.get("duration","Not recorded")} seconds');st.write(f'**Status:** {s.get("status","Not available")}')
     if s.get('errors'):
