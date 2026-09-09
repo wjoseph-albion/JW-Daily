@@ -40,7 +40,6 @@ def load_workbook():
     }
 
 
-ROOT=Path(__file__).parent;OUT=ROOT/'data/snapshots';EDIT=ROOT/'data/editorial.json';MAP=ROOT/'data/source_mappings.csv';ECON=ROOT/'data/economic_indicators.csv';MM=ROOT/'data/money_market_yields.csv'
 st.set_page_config(page_title='Jason Ware Daily',page_icon='📈',layout='wide');st.markdown('<style>'+Path('assets/style.css').read_text()+'</style>',unsafe_allow_html=True)
 def read_json(p,d):
     try:return json.loads(p.read_text(encoding='utf-8'))
@@ -129,25 +128,6 @@ e = {
     ].iloc[0]
 };
 
-
-mode=st.sidebar.radio('View',['Publication','Editor & Settings'])
-if mode=='Editor & Settings':
-    st.title('Editor & Settings');st.write(f'**Current Snapshot:** {s.get("snapshot_id","Not available")}');st.write(f'**Last Refresh:** {stamp(s.get("generated_at"))}');st.write(f'**Duration:** {s.get("duration","Not recorded")} seconds');st.write(f'**Status:** {s.get("status","Not available")}')
-    if s.get('errors'):
-        with st.expander('Refresh notes'):
-            for error in s['errors']:st.write('• '+error)
-    with st.form('editorial'):
-        q=st.text_area('Opening quote',e.get('quote',''));a=st.text_input('Attribution',e.get('attribution',''));c=st.text_area('Jason Ware Daily commentary',e.get('commentary',''),height=250)
-        if st.form_submit_button('Publish',type='primary'):EDIT.write_text(json.dumps({'quote':q,'attribution':a,'commentary':c},indent=2),encoding='utf-8');st.rerun()
-    st.subheader('Economic Indicators - Manual Input');econ=st.data_editor(pd.read_csv(ECON,dtype=str,keep_default_na=False),use_container_width=True,hide_index=True,disabled=['Indicator'],column_config={c:st.column_config.TextColumn(c) for c in ['Current','Previous','As Of','Next Rel.','Cons Est.']})
-    if st.button('Save economic indicators'):econ.to_csv(ECON,index=False);st.success('Saved')
-    st.subheader('Money Market Fund Yields');money=st.data_editor(pd.read_csv(MM,dtype=str,keep_default_na=False),use_container_width=True,hide_index=True,disabled=['Fund','Ticker'],column_config={c:st.column_config.TextColumn(c) for c in ['Yield','As Of','Notes']})
-    if st.button('Save money market yields'):money.to_csv(MM,index=False);st.success('Saved')
-    with st.expander('Data Source Mapping and Editable Proxies',expanded=False):
-        mapping=st.data_editor(pd.read_csv(MAP),use_container_width=True,hide_index=True)
-        if st.button('Save data source mappings'):mapping.to_csv(MAP,index=False);st.success('Mappings saved')
-    if st.button('Refresh Market, Rates, and Curve',type='primary',disabled=(OUT/'refresh.lock').exists()):subprocess.Popen([sys.executable,'scripts/update.py'],cwd=ROOT,creationflags=getattr(subprocess,'CREATE_NEW_CONSOLE',0));st.success('Refresh started');st.rerun()
-    st.stop()
 left,right=st.columns([4,1])
 with left:st.caption('Daily Market Recap')
 with right:st.markdown(f'<div class=meta><b>Updated:</b> {html.escape(stamp(s.get("generated_at")))}</div>',unsafe_allow_html=True)
