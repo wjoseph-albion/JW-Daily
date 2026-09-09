@@ -60,7 +60,7 @@ def sector_chart(rows,key,title):
 s=read_json(OUT/'current.json',{});e=read_json(EDIT,{});mode=st.sidebar.radio('View',['Publication','Editor & Settings'])
 import requests
 
-WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=bb46E8"
+WORKBOOK_URL = "https://albionfinancial.sharepoint.com/:x:/g/IQAKJ_K4HfyQT7KiKzFz85SXAaUdKpYhcfSyfgP7xl7Kel4?e=pAi4Ll&download=1"
 
 r = requests.get(WORKBOOK_URL)
 
