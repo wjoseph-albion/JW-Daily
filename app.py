@@ -169,5 +169,5 @@ st.subheader('Economic Indicators')
 st.dataframe(
     economic,
     use_container_width=True,
-    hide_index=True
+    hide_index=True)
 st.divider();st.subheader('Money Market Fund Yields');st.dataframe(pd.read_csv(MM,dtype=str,keep_default_na=False).reindex(columns=['Fund','Ticker','Yield','As Of']),use_container_width=True,hide_index=True)
