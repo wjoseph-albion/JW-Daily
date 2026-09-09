@@ -63,7 +63,7 @@ try:
     xls = pd.ExcelFile(WORKBOOK_URL)
     st.success(f"Workbook accessed successfully: {xls.sheet_names}")
 except Exception as exc:
-    st.errorr(f"Workbook test failed: {exc}")
+    st.error(f"Workbook test failed: {exc}")
 if mode=='Editor & Settings':
     st.title('Editor & Settings');st.write(f'**Current Snapshot:** {s.get("snapshot_id","Not available")}');st.write(f'**Last Refresh:** {stamp(s.get("generated_at"))}');st.write(f'**Duration:** {s.get("duration","Not recorded")} seconds');st.write(f'**Status:** {s.get("status","Not available")}')
     if s.get('errors'):
