@@ -192,3 +192,5 @@ if st.button("📈 Refresh Market Data"):
 
     st.cache_data.clear()
     st.rerun()
+s = read_json(OUT/'current.json', {})
+st.write(s.get("generated_at"))
